@@ -16,7 +16,6 @@ public class JdbcIngredientRepository implements IngredientRepository{
 
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public JdbcIngredientRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -36,8 +35,11 @@ public class JdbcIngredientRepository implements IngredientRepository{
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
+        jdbcTemplate.update("insert into Ingredient (id, name, type) values (?, ?, ?)", 
+        ingredient.getId(),
+        ingredient.getName(),
+        ingredient.getType().toString());
+        return ingredient;
     }
 
     private Ingredient mapTrowToIngredient(ResultSet row, int rowNum) throws SQLException {
