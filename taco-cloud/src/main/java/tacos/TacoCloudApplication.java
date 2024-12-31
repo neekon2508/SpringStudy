@@ -31,4 +31,5 @@ public class TacoCloudApplication {
         repo.save(new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
       };
     }
+
 }
