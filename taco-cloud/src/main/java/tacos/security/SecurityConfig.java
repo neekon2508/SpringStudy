@@ -53,6 +53,9 @@ public class SecurityConfig {
       .and()
         .logout()
           .logoutSuccessUrl("/")
+      .and()
+        .oauth2Login()
+          .loginPage("/login")
           
       // Make H2-Console non-secured; for debug purposes
       .and()
@@ -64,8 +67,10 @@ public class SecurityConfig {
         .headers()
           .frameOptions()
             .sameOrigin()
-            
-       .and()
+      .and()
+        .logout()
+          .logoutSuccessUrl("/")
+      .and()
        .build();
   }
   
