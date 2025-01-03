@@ -1,12 +1,8 @@
 spring:
   datasource:
-    generate-unique-name: false
-    name: tacocloud
-  security:
-    oauth2:
-      client:
-        registration:
-          facebook:
-            clientId: <facebook client id>
-            clientSecret: <facebook client secret>
-            scope: email, public_profie
+    url: jdbc:mysql://localhost:3306/tacocloud
+    username: root
+    password: 123456789
+  jpa: 
+    hibernate: 
+      ddl-auto: update

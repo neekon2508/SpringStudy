@@ -53,14 +53,14 @@ public class SecurityConfig {
       .and()
         .logout()
           .logoutSuccessUrl("/")
-      .and()
-        .oauth2Login()
-          .loginPage("/login")
+      // .and()
+      //   .oauth2Login()
+      //     .loginPage("/login")
           
-      // Make H2-Console non-secured; for debug purposes
-      .and()
-        .csrf()
-          .ignoringRequestMatchers("/h2-console/**")
+      // // Make H2-Console non-secured; for debug purposes
+      // .and()
+      //   .csrf()
+      //     .ignoringRequestMatchers("/h2-console/**")
   
       // Allow pages to be loaded in frames from the same origin; needed for H2-Console
       .and()  
