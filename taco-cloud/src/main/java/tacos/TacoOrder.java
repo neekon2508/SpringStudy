@@ -6,12 +6,16 @@ import java.util.List;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -27,10 +31,15 @@ public class TacoOrder implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private Date placedAt = new Date();
+  private Date placedAt;
+
+  
+  @ManyToOne
+  @JoinColumn(name="user_id")
+  private AccountUser user;
 
   @NotBlank(message="Delivery name is required")
   private String deliveryName;
@@ -54,17 +63,20 @@ public class TacoOrder implements Serializable {
            message="Must be formatted MM/YY")
   private String ccExpiration;
 
+  @Column(name="cc_cvv")
   @Digits(integer=3, fraction=0, message="Invalid CVV")
   private String ccCVV;
 
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name="taco_order")
   private List<Taco> tacos = new ArrayList<>();
 
   public void addTaco(Taco taco) {
     this.tacos.add(taco);
+    // taco.setOrder(this);
   }
-
-  @ManyToOne
-  private AccountUser user;
-
+  @PrePersist
+  void placedAt() {
+  this.placedAt = new Date();
+  }
 }
