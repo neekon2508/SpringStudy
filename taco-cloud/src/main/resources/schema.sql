@@ -1,5 +1,6 @@
+ use tacocloud;
  create table if not exists Taco_Order (
-  id identity primary key,
+  id bigint auto_increment primary key,
   delivery_Name varchar(50) not null,
   delivery_Street varchar(50) not null,
   delivery_City varchar(50) not null,
@@ -12,7 +13,7 @@
   user_id bigint
  );
  create table if not exists Taco (
-  id identity primary key,
+  id bigint auto_increment primary key,
   name varchar(50) not null,
   taco_order bigint not null,
   taco_order_key bigint not null,
@@ -30,7 +31,17 @@
     FOREIGN KEY (taco_id) REFERENCES taco(id), 
     FOREIGN KEY (ingredient_id) REFERENCES ingredient(id)
  );
- create table account_user {};
+ create table account_user (
+  id bigint auto_increment primary key,
+  username varchar(50) not null,
+  password varchar(50) not null,
+  fullname varchar(50) not null, 
+  street varchar(50),
+  city varchar(50),
+  state varchar(50),
+  zip varchar(50),
+  phoneNumber varchar(50)
+ );
 
 alter table Taco add foreign key (taco_order) references Taco_Order(id);
 alter table Taco_Order add foreign key (user_id) references Account_User(id);
