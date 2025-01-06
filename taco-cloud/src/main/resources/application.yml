@@ -1,8 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mysql://204.0.137.204:3306/tacocloud
+    url: jdbc:mysql://192.168.1.14:3306/tacocloud
     username: root 
     password: root
+  data:
+    rest:
+      base-path: /data-api
 logging:
   file:
     path: var/logs/
@@ -16,5 +19,5 @@ taco:
   orders:
     pageSize: 10
 server: 
-    address: 204.0.137.204
+    address: localhost
     port: 9090

@@ -16,7 +16,7 @@ import tacos.data.OrderRepository;
 
 @RestController
 @RequestMapping(path="/api/orders", produces = "application/json")
-@CrossOrigin(origins = "http://204.0.137.204:9090")
+@CrossOrigin(origins = "http://localhost:9090")
 public class APITacoOrderController {
 
     private OrderRepository orderRepo;
