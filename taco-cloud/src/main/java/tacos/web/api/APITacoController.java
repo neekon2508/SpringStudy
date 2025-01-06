@@ -9,7 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import tacos.Taco;
@@ -17,11 +20,11 @@ import tacos.data.TacoRepository;
 
 @RestController
 @RequestMapping(path="/api/tacos", produces = "application/json")
-@CrossOrigin(origins = "http://tacocloud:8080")
-public class TacoController {
+@CrossOrigin(origins = "http://204.0.137.204:9090")
+public class APITacoController {
     private TacoRepository tacoRepo;
     
-    public TacoController(TacoRepository tacoRepo) {
+    public APITacoController(TacoRepository tacoRepo) {
         this.tacoRepo = tacoRepo;
     }
 
@@ -42,5 +45,11 @@ public class TacoController {
         if(optTaco.isPresent())
             return new ResponseEntity<>(optTaco.get(), HttpStatus.OK);
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping(consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Taco postTaco(@RequestBody Taco taco) {
+        return tacoRepo.save(taco);
     }
 }

@@ -25,7 +25,7 @@ import jakarta.validation.constraints.Size;
 public class Taco {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
    @ManyToOne(fetch = FetchType.LAZY)

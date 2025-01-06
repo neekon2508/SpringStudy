@@ -15,8 +15,7 @@
  create table if not exists Taco (
   id bigint auto_increment primary key,
   name varchar(50) not null,
-  taco_order bigint not null,
-  taco_order_key bigint not null,
+  taco_order bigint,
   created_at timestamp not null
  );
  create table if not exists Ingredient (
@@ -40,8 +39,16 @@
   city varchar(50),
   state varchar(50),
   zip varchar(50),
-  phoneNumber varchar(50)
+  phone_number varchar(50)
  );
 
 alter table Taco add foreign key (taco_order) references Taco_Order(id);
 alter table Taco_Order add foreign key (user_id) references Account_User(id);
+ 
+## Allow Remote Access to MySql
+create user 'root'@'%' identified by 'root';
+grant all privileges on *.* to 'root'@'%' with grant option;
+flush privileges;
+
+Windows Firewall with Advanced Security->Check port 3306 inbound Rules->Outbound Rules: new Rule->port 3306
+
