@@ -30,7 +30,9 @@ public class AccountUser implements UserDetails{
 
     private final String username;
     private final String password;
+    private final String fullname;
     private final String role;
+    
 
     @Override
     @Transient

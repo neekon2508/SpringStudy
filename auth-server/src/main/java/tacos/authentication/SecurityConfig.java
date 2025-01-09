@@ -1,5 +1,6 @@
 package tacos.authentication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.
      HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.
@@ -11,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import tacos.authentication.users.AccountUserRepository;
 
-@EnableWebSecurity
+@Configuration
 public class SecurityConfig {
    @Bean
    SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
@@ -23,8 +24,8 @@ public class SecurityConfig {
    .formLogin()
    .and().build();
    }
+   
    @Bean
-
     UserDetailsService userDetailsService(AccountUserRepository userRepo) {
     return username -> userRepo.findByUsername(username);
     }
