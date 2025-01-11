@@ -1,11 +1,18 @@
 spring:
   datasource:
-    url: jdbc:mysql://192.168.1.14:3306/tacocloud
+    url: jdbc:mysql://192.168.1.6:3306/tacocloud
     username: root 
     password: root
   data:
     rest:
       base-path: /data-api
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
+          # issuer-uri: http://localhost:9000/oauth2/jwks
+          
 logging:
   file:
     path: var/logs/

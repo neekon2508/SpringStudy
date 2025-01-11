@@ -2,12 +2,15 @@ package tacos.authentication.users;
 import java.beans.Transient;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,14 +33,25 @@ public class AccountUser implements UserDetails{
 
     private final String username;
     private final String password;
-    private final String fullname;
+    //private final String fullname;
     private final String role;
+    // @Enumerated(EnumType.STRING)
+    // private final Role role;
     
+    // public enum Role implements GrantedAuthority {
+    //     ROLE_USER, ROLE_ADMIN;
+
+    //     @Override
+    //     public String getAuthority() {
+    //         return name();
+    //     }
+    // }
 
     @Override
     @Transient
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       return Collections.singletonList(new SimpleGrantedAuthority(role));
+        return Collections.singletonList(new SimpleGrantedAuthority(role));
+    // return Set.of(role);
     }
 
     @Override

@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,10 +43,15 @@ public class SecurityConfig {
   
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    return http.csrf().disable()
+    http.csrf().disable()
       .authorizeRequests()
         .requestMatchers("/design", "/orders").hasRole("USER")
+        .requestMatchers(HttpMethod.POST, "/api/ingredients")
+        .hasAnyAuthority("SCOPE_writeIngredients")
+      .requestMatchers(HttpMethod.DELETE, "/api/ingredients")
+        .hasAuthority("SCOPE_deleteIngredients")
         .anyRequest().permitAll()
+       
 
       .and()
         .formLogin()
@@ -53,6 +60,7 @@ public class SecurityConfig {
       .and()
         .logout()
           .logoutSuccessUrl("/")
+        
       // .and()
       //   .oauth2Login()
       //     .loginPage("/login")
@@ -70,8 +78,20 @@ public class SecurityConfig {
       .and()
         .logout()
           .logoutSuccessUrl("/")
-      .and()
-       .build();
+      
+          .and()
+          .oauth2ResourceServer(oauth2->oauth2.jwt());
+      
+       return http.build();
   }
-  
+  // @Override
+  // protected void configure(HttpSecurity http) throws Exception {
+  //   http
+  //   .authorizeRequests()
+  //   .requestMatchers(HttpMethod.POST, "/api/ingredients")
+  //   .hasAnyAuthority("SCOPE_writeIngredients")
+  // .requestMatchers(HttpMethod.DELETE, "/api/ingredients")
+  //   .hasAuthority("SCOPE_deleteIngredients").and()
+  //     .oauth2ResourceServer(oauth2->oauth2.jwt());
+  // }
 }

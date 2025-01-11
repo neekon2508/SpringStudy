@@ -5,3 +5,8 @@ spring:
     password: root
 server:
   port: 9000
+manage:
+  endpoints:
+    web: 
+      exposure:
+        include: '*'

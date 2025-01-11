@@ -15,16 +15,24 @@ public class AuthServerApplication {
         SpringApplication.run(AuthServerApplication.class, args);
     }
 
-    // @Bean
-    // public ApplicationRunner dataLoader(
-    //     AccountUserRepository repo, PasswordEncoder encoder) {
-    //         return args -> {
-    //             repo.save(
-    //                 new AccountUser("habuma", encoder.encode("password"), "habuma", "ROLE_ADMIN" )
-    //             );
-    //             repo.save(
-    //                 new AccountUser("tacochef", encoder.encode("password"), "tacochef", "ROLE_ADMIN")
-    //             );
-    //         };
-    //     }
+    @Bean
+    public ApplicationRunner dataLoader(
+        AccountUserRepository repo, PasswordEncoder encoder) {
+            // return args -> {
+            //     repo.save(
+            //         new AccountUser("habuma", encoder.encode("password"), "habuma", "ROLE_ADMIN" )
+            //     );
+            //     repo.save(
+            //         new AccountUser("tacochef", encoder.encode("password"), "tacochef", "ROLE_ADMIN")
+            //     );
+            // };
+            return args -> {
+                repo.save(
+                    new AccountUser("habuma", encoder.encode("password"),"ROLE_ADMIN" )
+                );
+                repo.save(
+                    new AccountUser("tacochef", encoder.encode("password"),"ROLE_ADMIN")
+                );
+            };
+        }
 }
