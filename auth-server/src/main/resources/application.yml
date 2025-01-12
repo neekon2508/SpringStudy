@@ -10,3 +10,8 @@ manage:
     web: 
       exposure:
         include: '*'
+logging:
+  level:
+    org:
+      springframework:
+        security: trace
