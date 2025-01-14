@@ -20,7 +20,7 @@ import tacos.data.IngredientRepository;
 
 @RestController
 @RequestMapping(path="/api/ingredients", produces = "application/json")
-@CrossOrigin(origins = "http://localhost:9090")
+@CrossOrigin(origins = "http://localhost:8080")
 public class APIIngredientController {
     private IngredientRepository ingredientRepo;
 

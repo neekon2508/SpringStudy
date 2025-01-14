@@ -47,26 +47,39 @@ import com.nimbusds.jose.proc.SecurityContext;
 import tacos.authentication.users.AccountUserRepository;
 
 
-@Configuration()
+@Configuration
 @EnableWebSecurity
 public class AuthorizationServerConfig {
 	@Bean 
 	@Order(1)
 	public SecurityFilterChain authorizationServerSecurityFilterChain(HttpSecurity http)
 			throws Exception {
+        //Code này khiến cho client project bị lỗi: Caused by: org.springframework.web.client.UnknownContentTypeException: Could not extract response: 
+        //no suitable HttpMessageConverter found for response type [java.util.Map<java.lang.String, java.lang.Object>] and content type [text/html;charset=UTF-8]
+        // OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
+        // return http.formLogin(Customizer.withDefaults()).build(); Code 
+        
+
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
-        return http.formLogin(Customizer.withDefaults()).build();
+
+        return http.getConfigurer(OAuth2AuthorizationServerConfigurer.class).oidc(Customizer.withDefaults())
+              .and().exceptionHandling(e ->
+                e.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")))
+               .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+              .build();
 	}
     @Bean
     @Order(2)
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
             throws Exception {
               return http
-              .authorizeRequests(authorizeRequests ->
+              .authorizeHttpRequests(authorizeRequests ->
                   authorizeRequests.anyRequest().authenticated()
               )
               .formLogin()
               .and().build();
+
+              // return http.formLogin(Customizer.withDefaults()).authorizeHttpRequests(authorize->authorize.anyRequest().authenticated()).build();
     }
 
     @Bean
