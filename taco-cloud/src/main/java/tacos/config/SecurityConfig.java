@@ -1,4 +1,4 @@
-package tacos.security;
+package tacos.config;
 
 import java.util.ArrayList;
 import java.util.Arrays;
