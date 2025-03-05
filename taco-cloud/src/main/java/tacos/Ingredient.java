@@ -24,7 +24,7 @@ public class Ingredient {
 
   @Enumerated(EnumType.STRING)
   private Type type;
-
+  private String image;
   public enum Type {
     WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
   }
