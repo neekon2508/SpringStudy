@@ -2,12 +2,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
  <head>
-	 <title>Taco Cloud</title>
+	 <title>Home</title>
+	 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+	 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>  
  </head>
  
- <body>
-	 <h1>Welcome to...</h1>
-	 <img th:src="@{/images/ahri.jpg}" />
-	 <a th:href = "@{/design}">Click here to design your taco</a>
+ <body class="p-3 mb-2 bg-body-secondary">
+
+	<div class="container text-center">
+		<h1>Welcome to My Taco Store</h1>
+	</div>
+
+
+	<div class="container" style="width:40%; height:20%;">
+	 <div id="carousel" class="carousel slide">
+		<div class="carousel-inner ">
+		  <div class="carousel-item active">
+			<div class="d-flex justify-content-center">
+			<img th:src="@{/images/home_page/home_page_image.jpg}" class="d-block w-100" alt="...">
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<div class="d-flex justify-content-center">
+			<img th:src="@{/images/home_page/home_page_image1.jpg}" class="d-block w-100" alt="..." >
+			</div>
+		  </div>
+		  <div class="carousel-item">
+			<div class="d-flex justify-content-center">
+			<img th:src="@{/images/home_page/home_page_image2.jpg}" class="d-block w-100" alt="...">
+			</div>
+		  </div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+		  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+		  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  <span class="visually-hidden">Next</span>
+		</button>
+	  </div>
+	</div>
+	<br>
+	<div class="container text-center">
+		<p><a th:href = "@{/design}" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">
+			Click here to design your taco
+		</a></p>
+
+	</div>
  </body>
 </html>
