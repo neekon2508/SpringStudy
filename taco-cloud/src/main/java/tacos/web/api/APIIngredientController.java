@@ -1,5 +1,7 @@
 package tacos.web.api;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -34,6 +36,11 @@ public class APIIngredientController {
         
         return ingredientRepo.findAll();
     }
+    @GetMapping("/{id}")
+    public Optional<Ingredient> ingredientById(@PathVariable("id") String id ) {
+        return ingredientRepo.findById(id);
+    }
+
 
     @PostMapping(consumes = "application/json")
     @PreAuthorize("#{hasRole('ADMIN')}")

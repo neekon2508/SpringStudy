@@ -1,54 +1,74 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Taco Cloud</title>
-		<link rel="stylesheet" th:href="@{/styles.css}">
+		<title>Order</title>
+		<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+		<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.bundle.min.js}"></script>  
+
 	</head>
 	
-	<body>
+	<body class="p-3 mb-2 bg-body-secondary">
 		
 		<form method="POST" th:action="@{/orders}" th:object="${tacoOrder}" id="orderForm">
-		 	<h1>Order your taco creations!</h1>
-		 	<img th:href="@{/images/TacoCloud.png}" >
-		 	<h3>Your tacos in this order:</h3>
-		 	<a th:href="@{/design}" id="another">Design another taco</a><br>
-		 	<ul>
-				<li th:each="taco : ${tacoOrder.tacos}">
-					<span th:text="${taco.name}">taco name</span>
-				</li> 
-			</ul>
-			<h3>Deliver my taco masterpieces to...</h3>
- <label for="deliveryName">Name: </label>
- <input type="text" th:field="*{deliveryName}"/>
- <br/>
- <label for="deliveryStreet">Street address: </label>
- <input type="text" th:field="*{deliveryStreet}"/>
- <br/>
- <label for="deliveryCity">City: </label>
- <input type="text" th:field="*{deliveryCity}"/>
- <br/>
- <label for="deliveryState">State: </label>
- <input type="text" th:field="*{deliveryState}"/>
- <br/>
- <label for="deliveryZip">Zip code: </label>
- <input type="text" th:field="*{deliveryZip}"/>
- <br/>
- <h3>Here's how I'll pay...</h3>
- <label for="ccNumber">Credit Card #: </label>
+		 	<h1 style="margin-left: 10%;">Order your taco creations!</h1>
+		 	<h3 style="margin-left: 10%;">Your tacos in this order:</h3>
+			<div class="card w-25" th:each="taco : ${tacoOrder.tacos}">
+				<div class="card-body">
+				<h5 class="card-title" th:text="${taco.name}" style="text-align: center;">taco name</h5>
+				<div th:each="ingredient: ${taco.ingredients}">
+					<p th:text="${ingredient.name}">Ingredient Name</p>
+				</div>
+				</div>
+			</div>
 
- <input type="text" th:field="*{ccNumber}"/>
- <span class="validationError" 
- 	th:if="${#fields.hasErrors('ccNumber')}"
- 	th:errors="*{ccNumber}">CC Num Error</span>
- <br/>
- <label for="ccExpiration">Expiration: </label>
- <input type="text" th:field="*{ccExpiration}"/>
- <br/>
- <label for="ccCVV">CVV: </label>
- <input type="text" th:field="*{ccCVV}"/>
- <br/>
- 
- <input type="submit" value="Submit Order">
-</form>
+			
+			<a th:href="@{/design}" id="another" style="margin-left: 50%;">Design another taco</a>
+			<h3 style="margin-left: 10%;">Deliver my taco masterpieces to...</h3>
+			<table style="margin:auto;">
+				<tr>
+				
+				<td><label for="deliveryName">Name: </label></td>
+				<td><input type="text" th:field="*{deliveryName}"/></td>
+				
+				</tr>
+				<tr>
+					<td><label for="deliveryStreet">Street address: </label></td>
+					<td><input type="text" th:field="*{deliveryStreet}"/></td>
+				</tr>
+				<tr>
+					<td><label for="deliveryCity">City: </label></td>
+					<td><input type="text" th:field="*{deliveryCity}"/></td>
+				</tr>
+				<tr>
+					<td><label for="deliveryState">State: </label></td>
+					<td><input type="text" th:field="*{deliveryState}"/></td>
+				</tr>
+				<tr>
+					<td><label for="deliveryZip">Zip code: </label></td>
+					<td><input type="text" th:field="*{deliveryZip}"/></td>
+				</tr>
+			</table>
+			<h3 style="margin-left: 10%;">Here's how I'll pay...</h3>
+			<table style="margin:auto;">
+				<tr>
+					<td><label for="ccNumber">Credit Card #: </label></td>
+					<td>
+						<input type="text" th:field="*{ccNumber}"/>
+						<span class="validationError" 
+					th:if="${#fields.hasErrors('ccNumber')}"
+					th:errors="*{ccNumber}">CC Num Error</span>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="ccExpiration">Expiration: </label></td>
+					<td><input type="text" th:field="*{ccExpiration}"/></td>
+				</tr>
+				<tr>
+					<td><label for="ccCVV">CVV: </label></td>
+					<td><input type="text" th:field="*{ccCVV}"/></td>
+				</tr>
+			</table>
+				<input type="submit" value="Submit Order" style="display: block;margin: 0 auto;">
+		</form>
 </body>
 </html>
