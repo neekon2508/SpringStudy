@@ -77,10 +77,10 @@ public class SecurityConfig {
       //       .sameOrigin()
       .and()
         .logout()
-          .logoutSuccessUrl("/")
+          .logoutSuccessUrl("/");
       
-          .and()
-          .oauth2ResourceServer(oauth2->oauth2.jwt());
+          // .and()
+          // .oauth2ResourceServer(oauth2->oauth2.jwt());
       
        return http.build();
   }

@@ -20,23 +20,22 @@ public class JmsOrderMessagingService implements OrderMessagingService{
         this.jms = jms;
     }
     
-    // @Override
-    // public void sendOrder(TacoOrder order) {
-    //     // jms.send(new MessageCreator() {
-
-    //     //     @Override
-    //     //     public Message createMessage(Session session) throws JMSException {
-    //     //        return session.createObjectMessage(order);
-    //     //     }
-            
-    //     // });
-    //     jms.send(session -> session.createObjectMessage(order));
-    // }
     @Override
     public void sendOrder(TacoOrder order) {
-      jms.convertAndSend("tacocloud.order.queue", order,
-          this::addOrderSource);
+        jms.send(new MessageCreator() {
+
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+               return session.createObjectMessage(order);
+            }
+            
+        });
     }
+    // @Override
+    // public void sendOrder(TacoOrder order) {
+    //   jms.convertAndSend("tacocloud.order.queue", order,
+    //       this::addOrderSource);
+    // }
     
     private Message addOrderSource(Message message) throws JMSException {
       message.setStringProperty("X_ORDER_SOURCE", "WEB");

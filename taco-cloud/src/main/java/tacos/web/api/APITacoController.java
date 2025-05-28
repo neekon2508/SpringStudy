@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import reactor.core.publisher.Flux;
 import tacos.Taco;
 import tacos.data.TacoRepository;
 
@@ -28,13 +29,17 @@ public class APITacoController {
         this.tacoRepo = tacoRepo;
     }
 
-    @GetMapping(params = "recent")
-    public Iterable<Taco> recentTacos() {
-        PageRequest page = PageRequest.of(
-            0, 12, Sort.by("createdAt").descending());
-        return tacoRepo.findAll(page).getContent();
-    }
+    // @GetMapping(params = "recent")
+    // public Iterable<Taco> recentTacos() {
+    //     PageRequest page = PageRequest.of(
+    //         0, 12, Sort.by("createdAt").descending());
+    //     return tacoRepo.findAll(page).getContent();
+    // }
 
+    @GetMapping(params = "recent")
+    public Flux<Taco> recentTacos() {
+        return Flux.fromIterable(tacoRepo.findAll()).take(12);
+    }
     // @GetMapping("/{id}")
     // public Optional<Taco> tacoById(@PathVariable("id") Long id) {
     //     return tacoRepo.findById(id);

@@ -1,22 +1,22 @@
 spring:
   datasource:
-    url: jdbc:mysql://204.0.137.204:3306/tacocloud
+    url: jdbc:mysql://localhost:3306/tacocloud
     username: root 
-    password: root
+    password: Nghia2508@
   data:
     rest:
       base-path: /data-api
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: http://localhost:9000/oauth2/jwks
-          # issuer-uri: http://localhost:9000/oauth2/jwks
-  artemis:
-    host: artemis.tacocloud.com
-    port: 61617
-    user: tacoweb
-    password: 13tm31n
+  # security:
+  #   oauth2:
+  #     resourceserver:
+  #       jwt:
+  #         jwk-set-uri: http://localhost:9000/oauth2/jwks
+  #         # issuer-uri: http://localhost:9000/oauth2/jwks
+  # artemis:
+  #   host: artemis.tacocloud.com
+  #   port: 61617
+  #   user: tacoweb
+  #   password: 13tm31n
   jms:
     template:
       default-destination: tacocloud.order.queue
@@ -34,4 +34,4 @@ taco:
   orders:
     pageSize: 10
 server: 
-    port: 8080 
+    port: 8081 
