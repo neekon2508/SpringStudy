@@ -1,0 +1,9 @@
+{
+    "java.dependency.packagePresentation": "hierarchical",
+    "java.project.sourcePaths": [
+        "chap2_java_core\\src\\main\\java"
+    ],
+    "java.project.referencedLibraries": [
+        "chap2_java_core/target/my-spring-project-1.0-SNAPSHOT.jar"
+    ]
+}

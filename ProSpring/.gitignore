@@ -1,0 +1,25 @@
+# Bỏ các thư mục build
+/target/
+/out/
+
+# Bỏ file logs
+*.log
+
+# Bỏ thư mục IDE
+/.idea/
+/*.iml
+/.vscode/
+
+# Bỏ các file biên dịch
+*.class
+
+# Bỏ các file config local
+*.properties
+*.env
+
+# Bỏ thư mục dependency Maven local
+/.mvn/
+
+# Bỏ thư mục của hệ điều hành
+.DS_Store
+Thumbs.db

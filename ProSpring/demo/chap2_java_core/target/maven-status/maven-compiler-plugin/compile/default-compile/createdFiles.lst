@@ -1,0 +1,6 @@
+com\example\HelloWorldDecoupledWithServiceLoader.class
+com\example\MessageRenderer.class
+com\example\MessageSupportFactory.class
+com\example\MessageProvider.class
+com\example\StandardOutMessageRenderer.class
+com\example\HelloWorldMessageProvider.class
