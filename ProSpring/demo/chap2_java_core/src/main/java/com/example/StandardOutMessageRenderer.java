@@ -1,10 +1,19 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-
+@Component("renderer")
 public class StandardOutMessageRenderer implements MessageRenderer{
 
     private MessageProvider messageProvider;
+
+
+    @Autowired
+    public StandardOutMessageRenderer(MessageProvider messageProvider) {
+        System.out.println(" ~~ Injecting dependency using constructor");
+        this.messageProvider = messageProvider;
+    }
 
     public StandardOutMessageRenderer() {
         System.out.println(" --> StandardOutMessageRenderer: constructor called");

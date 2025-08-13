@@ -1,6 +1,7 @@
-com\example\HelloWorldDecoupledWithServiceLoader.class
 com\example\MessageRenderer.class
+com\example\HelloWorldConfiguration.class
 com\example\MessageSupportFactory.class
+com\example\HelloWorldSpringAnnotated.class
 com\example\MessageProvider.class
 com\example\StandardOutMessageRenderer.class
 com\example\HelloWorldMessageProvider.class
