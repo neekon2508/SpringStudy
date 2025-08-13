@@ -6,9 +6,9 @@
 *.log
 
 # Bỏ thư mục IDE
-/.idea/
-/*.iml
-/.vscode/
+.idea/
+*.iml
+.vscode/
 
 # Bỏ các file biên dịch
 *.class
