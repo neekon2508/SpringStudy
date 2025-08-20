@@ -42,6 +42,7 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
 
     Iterable<Album> findBySinger(Singer singer);
 
+    @Query(name = Album.FIND_WITH_RELEASE_DATE_GREATER_THAN)
     Iterable<Album> findWithReleaseDateGreaterThan(LocalDate rd);
 
     @Query("select a from Album a where a.title like %:title%")
