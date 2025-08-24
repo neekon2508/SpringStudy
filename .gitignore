@@ -1,5 +1,5 @@
 # Bỏ các thư mục build
-/target/
+target/
 /out/
 
 # Bỏ file logs
