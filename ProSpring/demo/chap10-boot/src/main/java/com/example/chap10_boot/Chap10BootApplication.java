@@ -1,7 +1,10 @@
 package com.example.chap10_boot;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -18,13 +21,18 @@ import com.example.chap10_boot.service.SingerService;
 public class Chap10BootApplication {
 
 	private static final Logger logger = LoggerFactory.getLogger(Chap10BootApplication.class);
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "dev");
-		var ctx = SpringApplication.run(Chap10BootApplication.class, args);
-		var service = ctx.getBean(SingerService.class);
-
-		logger.info(" ---- Listing singers:");
-		service.findAll().forEach(s-> logger.info(s.toString()));
+		try (var ctx = SpringApplication.run(Chap10BootApplication.class, args)) {
+			try {
+			var taskExecutor = ctx.getBean("taskExecutor");
+			logger.info(">>> 'taskExecutor' found: {}", taskExecutor.getClass());
+			}
+			catch (NoSuchBeanDefinitionException nbd) {
+			logger.debug("No taskExecutor configured");
+		} 
+		System.in.read();
 	}
+}
 
 }

@@ -3,7 +3,7 @@ package com.example.chap10_boot.service;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Streams;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +47,11 @@ public class SingerServiceImpl implements SingerService{
     public Singer updateFirstName(String firstName, Long id) {
         singerRepository.findById(id).ifPresent(s->singerRepository.setFirstNameFor(firstName, id));
         return singerRepository.findById(id).orElse(null);
+    }
+
+    @Scheduled(fixedDelay = 10000)
+    public void testSchedule() {
+        System.out.println("Test...");
     }
     
 }
