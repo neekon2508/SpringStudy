@@ -1,0 +1,6 @@
+spring:
+  artemis:
+    mode: embedded
+    embedded:
+      queues: prospring6
+      enabled: true
