@@ -31,12 +31,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.core.env.AbstractEnvironment;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 /**
  * Created by iuliana.cosmina on 16/12/2021
  */
 //@SpringBootApplication/*(exclude = { SecurityAutoConfiguration.class })*/
 @SpringBootApplication
+@EnableWebSecurity(debug = true)
 public class Chapter17Application {
 
     public static void main(String... args) {
