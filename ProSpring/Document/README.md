@@ -1,3 +1,5 @@
+# Extensions for Spring Boot backend and ReactJS frontend
+
 1. Extension Pack for Java​
 
 Extension ID: vscjava.vscode-java-pack​
@@ -45,6 +47,7 @@ Extension ID: vscjava.vscode-lombok​
 - Lombok annotation support​
 
 - Installation: `code --install-extension vscjava.vscode-Lombok`
+
 6. Debugger for Java​
 
    Extension ID: vscjava.vscode-java-debug​
@@ -100,6 +103,7 @@ Extension ID: vscjava.vscode-lombok​
     - AI-based code auto-completion​
 
     - Installation: `code --install-extension visualstudioexptteam.vscodeintellicode`
+
 13. Project Manager for Java​
 
 Extension ID: vscjava.vscode-java-dependency​
@@ -137,6 +141,7 @@ Extension ID: eamodio.gitlens​
 - Check Git history and blame information​
 
 - Installation: code --install-extension eamodio.gitlens
+
 1. ES7+ React/Redux/React Native snippets​
 
 Extension ID: dsznajder.es7-react-js-snippets​
